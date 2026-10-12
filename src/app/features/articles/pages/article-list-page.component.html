@@ -1,17 +1,47 @@
-<section aria-labelledby="articles-title">
+<section class="articles-page" aria-labelledby="articles-title">
   <header class="page-intro">
     <p class="section-kicker">SAVE POINT / ALL STORIES</p>
     <h1 id="articles-title">Artigos para subir de nível.</h1>
     <p>Guias, experiências e ideias sobre QA, testes e o universo da tecnologia.</p>
   </header>
 
-  @if (articles.length) {
-    <div class="page-grid">
-      @for (article of articles; track article.slug) {
-        <app-article-card [article]="article" />
+  <div class="article-browser">
+    <nav class="article-filters" aria-label="Filtrar artigos por categoria">
+      <button
+        class="article-filter"
+        type="button"
+        [class.is-active]="selectedCategorySlug === null"
+        [attr.aria-pressed]="selectedCategorySlug === null"
+        (click)="selectCategory(null)"
+      >
+        Todas as histórias
+      </button>
+      @for (category of categories; track category.slug) {
+        <button
+          class="article-filter"
+          type="button"
+          [class.is-active]="selectedCategorySlug === category.slug"
+          [attr.aria-pressed]="selectedCategorySlug === category.slug"
+          (click)="selectCategory(category)"
+        >
+          {{ category.name }}
+        </button>
       }
+    </nav>
+
+    <div class="article-results">
+      <div class="arcade-screen" aria-live="polite">
+        <h2 class="article-results-title">{{ selectedCategoryName }}</h2>
+        @if (filteredArticles.length) {
+          <div class="page-grid">
+            @for (article of filteredArticles; track article.slug) {
+              <app-article-card [article]="article" />
+            }
+          </div>
+        } @else {
+          <p class="empty-state">Nenhum artigo publicado ainda. Volte em breve.</p>
+        }
+      </div>
     </div>
-  } @else {
-    <p class="empty-state">Nenhum artigo publicado ainda. Volte em breve.</p>
-  }
+  </div>
 </section>

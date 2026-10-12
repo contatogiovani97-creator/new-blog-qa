@@ -344,7 +344,7 @@ export class AboutPageComponent implements OnDestroy {
       throw new Error(`Career stage ${position.number} was not found in the page.`);
     }
 
-    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     target.focus({ preventScroll: true });
   }
 

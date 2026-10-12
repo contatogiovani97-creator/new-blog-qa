@@ -1,6 +1,8 @@
 export interface VideoResource {
   slug: string;
   title: string;
+  group: string;
+  subject: string;
   topic: string;
   description: string;
   searchUrl: string;

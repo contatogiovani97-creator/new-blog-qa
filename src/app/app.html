@@ -1,11 +1,5 @@
 <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
 <div class="site-shell">
-  <div class="status-bar" aria-label="Status do site">
-    <span><span class="status-dot" aria-hidden="true"></span>GIOVANI - ONLINE</span>
-    <span>PLAYER 01 // BOOTING IDEAS SINCE 2026</span>
-    <span>PRESS START TO EXPLORE</span>
-  </div>
-
   <header class="site-header">
     <div class="site-brand">
       <button
@@ -19,14 +13,20 @@
       <a class="site-brand-name" routerLink="/">Giovani Tech QA</a>
     </div>
 
+    <div class="status-bar" aria-label="Status do site">
+      <span><span class="status-dot" aria-hidden="true"></span>GIOVANI - ONLINE</span>
+      <span>PLAYER 01 // BOOTING IDEAS SINCE 2018</span>
+      <span>PRESS START TO EXPLORE</span>
+    </div>
+
     <nav class="site-nav" aria-label="Navegação principal">
       <a routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="is-active"
         >ARCADE</a
       >
       <a routerLink="/artigos" routerLinkActive="is-active">ARTIGOS</a>
-      <a routerLink="/videos" routerLinkActive="is-active">VÍDEOS</a>
+      <a routerLink="/videos" routerLinkActive="is-active">VÍDEOS RECOMENDADOS</a>
       <a routerLink="/radar" routerLinkActive="is-active">RADAR TECH</a>
-      <a class="nav-cta" routerLink="/sobre">NOSSO PLAYER ↗</a>
+      <a class="nav-cta" routerLink="/sobre">NOSSO PLAYER ↗︎</a>
     </nav>
   </header>
 
@@ -36,16 +36,10 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <div>
+      <div class="footer-copy">
         <p class="footer-brand">Giovani Tech QA <span aria-hidden="true">✳</span></p>
         <p class="footer-note">Um checkpoint de ideias para quem vive tecnologia.</p>
       </div>
-      <nav class="footer-links" aria-label="Links do rodapé">
-        <a routerLink="/artigos">Artigos</a>
-        <a routerLink="/videos">Vídeos</a>
-        <a routerLink="/radar">Radar tech</a>
-        <a routerLink="/sobre">Nosso player</a>
-      </nav>
     </div>
   </footer>
 </div>

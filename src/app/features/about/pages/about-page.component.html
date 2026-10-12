@@ -1,5 +1,8 @@
 <div class="player-profile">
   <section class="player-hero" aria-labelledby="player-name">
+    <video class="player-hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="/Teste%20API%20simples%20com%20Cypress.mp4" type="video/mp4" />
+    </video>
     <div class="player-photo-frame">
       <img src="/foto-perfil-linkedin.png" alt="Foto de Giovani" />
       <span class="player-status"><span class="status-dot" aria-hidden="true"></span>ONLINE</span>
@@ -7,7 +10,7 @@
 
     <div class="player-intro">
       <p class="section-kicker">PLAYER PROFILE / GIOVANI TECH QA</p>
-      <h1 id="player-name">Giovani <span>—</span> Analista de Testes/QA</h1>
+      <h1 id="player-name">Giovani<br /><span>Analista de Testes/QA</span></h1>
       <p class="player-lead">
         Transformo qualidade em parte do jogo: da estratégia e automação aos testes de performance,
         APIs e colaboração com os times.
@@ -23,7 +26,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        Conectar no LinkedIn <span aria-hidden="true">↗</span>
+        Conectar no LinkedIn <span aria-hidden="true">↗︎</span>
       </a>
     </div>
   </section>
@@ -49,15 +52,17 @@
         <h2 id="career-title">Minha jornada</h2>
         <div class="career-heading-prompt">
           <p>Do suporte técnico à liderança de qualidade, cada fase trouxe um novo desafio.</p>
-          <button class="career-play-button" type="button" (click)="startCareerJourney()">
-            <span aria-hidden="true">▶</span>
-            PLAY CARREIRA
-          </button>
+          <div class="career-heading-actions">
+            <button class="career-play-button" type="button" (click)="startCareerJourney()">
+              <span aria-hidden="true">▶</span>
+              PLAY CARREIRA
+            </button>
+            <span class="career-count"
+              >{{ careerStages.length }} CARGOS / {{ careerGroups.length }} EMPRESAS</span
+            >
+          </div>
         </div>
       </div>
-      <span class="career-count"
-        >{{ careerStages.length }} CARGOS / {{ careerGroups.length }} EMPRESAS</span
-      >
     </div>
 
     <div class="career-layout">

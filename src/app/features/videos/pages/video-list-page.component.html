@@ -3,30 +3,75 @@
     <p class="section-kicker">NOW PLAYING / VIDEO SELECT</p>
     <h1 id="videos-page-title">Conhecimento em modo play.</h1>
     <p>
-      Uma seleção de temas para explorar vídeos sobre testes, qualidade de software e tecnologia. Os
+      Escolha um tema para encontrar vídeos sobre testes, qualidade de software e tecnologia. Os
       links abrem uma busca no YouTube para você escolher o conteúdo e o canal.
     </p>
   </header>
 
-  <div class="video-grid">
-    @for (video of videos; track video.slug; let index = $index) {
-      <a
-        class="video-card"
-        [href]="video.searchUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        [attr.aria-label]="'Buscar vídeos: ' + video.title + ' (abre em nova aba)'"
-      >
-        <div class="video-cover">
-          <span class="video-number">TEMA {{ (index + 1).toString().padStart(2, '0') }}</span>
-          <span class="play-button" aria-hidden="true">▶</span>
+  <div class="video-browser">
+    <nav class="video-topics" aria-label="Temas e ferramentas de vídeos">
+      @for (group of groups; track group) {
+        <div class="video-topic-group">
+          <button
+            class="video-topic"
+            type="button"
+            [class.is-expanded]="expandedGroup === group"
+            [attr.aria-expanded]="expandedGroup === group"
+            (click)="toggleGroup(group)"
+          >
+            <span>{{ group }}</span>
+            <span class="video-topic-indicator" aria-hidden="true">
+              {{ expandedGroup === group ? '−' : '+' }}
+            </span>
+          </button>
+          @if (expandedGroup === group) {
+            <div class="video-topic-options">
+              @for (video of videos; track video.slug) {
+                @if (video.group === group) {
+                  <button
+                    class="video-topic-option"
+                    type="button"
+                    [class.is-active]="selectedVideoSlug === video.slug"
+                    [attr.aria-pressed]="selectedVideoSlug === video.slug"
+                    (click)="selectVideo(video.slug)"
+                  >
+                    {{ video.subject }}
+                  </button>
+                }
+              }
+            </div>
+          }
         </div>
-        <div class="video-copy">
-          <p>{{ video.topic }}</p>
-          <h2>{{ video.title }}</h2>
-          <span>{{ video.description }}</span>
+      }
+    </nav>
+
+    <section
+      class="video-results"
+      aria-live="polite"
+      [attr.aria-label]="selectedVideo ? 'Vídeos sobre ' + selectedVideo.subject : 'Vídeos'"
+    >
+      @if (selectedVideo; as video) {
+        <h2 class="video-results-title">{{ video.subject }}</h2>
+        <div class="video-grid selected-video-grid">
+          <a
+            class="video-card"
+            [href]="video.searchUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'Buscar vídeos: ' + video.title + ' (abre em nova aba)'"
+          >
+            <div class="video-cover">
+              <span class="video-number">NOW PLAYING</span>
+              <span class="play-button" aria-hidden="true">▶</span>
+            </div>
+            <div class="video-copy">
+              <p>{{ video.topic }}</p>
+              <h2>{{ video.title }}</h2>
+              <span>{{ video.description }}</span>
+            </div>
+          </a>
         </div>
-      </a>
-    }
+      }
+    </section>
   </div>
 </section>

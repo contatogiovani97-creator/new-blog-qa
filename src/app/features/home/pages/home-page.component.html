@@ -8,10 +8,10 @@
     </p>
     <div class="button-row">
       <a class="button" routerLink="/artigos"
-        >Explorar conteúdos <span aria-hidden="true">↗</span></a
+        >Explorar conteúdos <span aria-hidden="true">↗︎</span></a
       >
       <a class="button button-secondary" routerLink="/videos">
-        <span aria-hidden="true">▶</span> Ver vídeos
+        <span aria-hidden="true">▶</span> Vídeos recomendados
       </a>
     </div>
   </div>
@@ -55,10 +55,10 @@
   }
 </nav>
 
-<section class="content-section" aria-labelledby="latest-title">
+<section class="content-section latest-section" aria-labelledby="latest-title">
   <div class="section-heading">
     <div>
-      <p class="section-kicker">SAVE POINT / 01</p>
+      <p class="section-kicker">SAVE POINT</p>
       <h2 id="latest-title">Novidades do blog</h2>
       <p>Guias e experiências para levar qualidade para o próximo nível.</p>
     </div>
@@ -74,13 +74,13 @@
 <section class="content-section video-section" aria-labelledby="videos-title">
   <div class="section-heading">
     <div>
-      <p class="section-kicker">NOW PLAYING / 02</p>
+      <p class="section-kicker">NOW PLAYING</p>
       <h2 id="videos-title">Aprender também é dar play.</h2>
       <p>
         Uma seleção de buscas temáticas para encontrar vídeos e conversas sobre QA e tecnologia.
       </p>
     </div>
-    <a class="text-link" routerLink="/videos">Ver seleção</a>
+    <a class="text-link" routerLink="/videos">Ver vídeos recomendados</a>
   </div>
   <div class="video-grid">
     @for (video of featuredVideos; track video.slug) {
@@ -92,7 +92,6 @@
         [attr.aria-label]="'Buscar vídeos: ' + video.title + ' (abre em nova aba)'"
       >
         <div class="video-cover">
-          <span class="video-number">TEMA 0{{ $index + 1 }}</span>
           <span class="play-button" aria-hidden="true">▶</span>
         </div>
         <div class="video-copy">
@@ -105,10 +104,10 @@
   </div>
 </section>
 
-<section class="content-section" aria-labelledby="radar-title">
+<section class="content-section radar-section" aria-labelledby="radar-title">
   <div class="section-heading">
     <div>
-      <p class="section-kicker">WORLD SELECT / 03</p>
+      <p class="section-kicker">WORLD SELECT</p>
       <h2 id="radar-title">Radar tech</h2>
       <p>Fontes para acompanhar novidades de tecnologia, desenvolvimento e qualidade.</p>
     </div>
