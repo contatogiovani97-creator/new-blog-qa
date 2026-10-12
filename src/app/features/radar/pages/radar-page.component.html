@@ -1,0 +1,32 @@
+<section aria-labelledby="radar-page-title">
+  <header class="page-intro">
+    <p class="section-kicker">WORLD SELECT / TECH RADAR</p>
+    <h1 id="radar-page-title">O que está rolando no universo tech?</h1>
+    <p>
+      Um radar de fontes para acompanhar notícias e atualizações de tecnologia, desenvolvimento,
+      automação e performance. Os links levam aos sites originais.
+    </p>
+  </header>
+
+  <div class="radar-grid">
+    @for (source of sources; track source.slug) {
+      <a
+        class="radar-card"
+        [href]="source.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        [attr.aria-label]="'Abrir ' + source.source + ' em nova aba'"
+      >
+        <span class="radar-source">{{ source.source }}</span>
+        <h2>{{ source.title }}</h2>
+        <p>{{ source.description }}</p>
+        <div class="tag-list" aria-label="Assuntos">
+          @for (topic of source.topics; track topic) {
+            <span class="tag">{{ topic }}</span>
+          }
+        </div>
+        <span class="text-link">Acessar fonte</span>
+      </a>
+    }
+  </div>
+</section>

@@ -1,0 +1,25 @@
+@if (category(); as currentCategory) {
+  <section [attr.aria-labelledby]="'category-title'">
+    <header class="page-intro">
+      <p class="section-kicker">CATEGORY SELECT / {{ currentCategory.slug }}</p>
+      <h1 id="category-title">{{ currentCategory.name }}</h1>
+      <p>{{ currentCategory.description }}</p>
+    </header>
+
+    @if (articles().length) {
+      <div class="page-grid">
+        @for (article of articles(); track article.slug) {
+          <app-article-card [article]="article" />
+        }
+      </div>
+    } @else {
+      <p class="empty-state">Ainda não há artigos nesta categoria.</p>
+    }
+  </section>
+} @else {
+  <section aria-labelledby="category-not-found-title">
+    <h1 id="category-not-found-title">Categoria não encontrada</h1>
+    <p>Confira os assuntos disponíveis na lista de artigos.</p>
+    <a routerLink="/artigos">Ver artigos</a>
+  </section>
+}

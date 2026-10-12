@@ -1,0 +1,32 @@
+<section aria-labelledby="videos-page-title">
+  <header class="page-intro">
+    <p class="section-kicker">NOW PLAYING / VIDEO SELECT</p>
+    <h1 id="videos-page-title">Conhecimento em modo play.</h1>
+    <p>
+      Uma seleção de temas para explorar vídeos sobre testes, qualidade de software e tecnologia. Os
+      links abrem uma busca no YouTube para você escolher o conteúdo e o canal.
+    </p>
+  </header>
+
+  <div class="video-grid">
+    @for (video of videos; track video.slug; let index = $index) {
+      <a
+        class="video-card"
+        [href]="video.searchUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        [attr.aria-label]="'Buscar vídeos: ' + video.title + ' (abre em nova aba)'"
+      >
+        <div class="video-cover">
+          <span class="video-number">TEMA {{ (index + 1).toString().padStart(2, '0') }}</span>
+          <span class="play-button" aria-hidden="true">▶</span>
+        </div>
+        <div class="video-copy">
+          <p>{{ video.topic }}</p>
+          <h2>{{ video.title }}</h2>
+          <span>{{ video.description }}</span>
+        </div>
+      </a>
+    }
+  </div>
+</section>

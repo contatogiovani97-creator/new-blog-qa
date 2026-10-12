@@ -1,0 +1,243 @@
+<div class="player-profile">
+  <section class="player-hero" aria-labelledby="player-name">
+    <div class="player-photo-frame">
+      <img src="/foto-perfil-linkedin.png" alt="Foto de Giovani" />
+      <span class="player-status"><span class="status-dot" aria-hidden="true"></span>ONLINE</span>
+    </div>
+
+    <div class="player-intro">
+      <p class="section-kicker">PLAYER PROFILE / GIOVANI TECH QA</p>
+      <h1 id="player-name">Giovani <span>—</span> Analista de Testes/QA</h1>
+      <p class="player-lead">
+        Transformo qualidade em parte do jogo: da estratégia e automação aos testes de performance,
+        APIs e colaboração com os times.
+      </p>
+      <div class="player-stats" aria-label="Resumo profissional">
+        <div><strong>08+</strong><span>ANOS EM TECH</span></div>
+        <div><strong>04</strong><span>EMPRESAS</span></div>
+        <div><strong>03</strong><span>LEVELS EM QA</span></div>
+      </div>
+      <a
+        class="button player-contact"
+        href="https://www.linkedin.com/in/giovani-a-996877375/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Conectar no LinkedIn <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="player-section" aria-labelledby="skills-title">
+    <div class="section-heading">
+      <div>
+        <p class="section-kicker">PLAYER LOADOUT / SKILLS</p>
+        <h2 id="skills-title">Meu arsenal de QA</h2>
+      </div>
+    </div>
+    <div class="player-skills">
+      @for (skill of coreSkills; track skill) {
+        <span class="player-skill">{{ skill }}</span>
+      }
+    </div>
+  </section>
+
+  <section class="player-section" aria-labelledby="career-title">
+    <div class="section-heading">
+      <div>
+        <p class="section-kicker">CONTINUE? / CAREER MODE</p>
+        <h2 id="career-title">Minha jornada</h2>
+        <div class="career-heading-prompt">
+          <p>Do suporte técnico à liderança de qualidade, cada fase trouxe um novo desafio.</p>
+          <button class="career-play-button" type="button" (click)="startCareerJourney()">
+            <span aria-hidden="true">▶</span>
+            PLAY CARREIRA
+          </button>
+        </div>
+      </div>
+      <span class="career-count"
+        >{{ careerStages.length }} CARGOS / {{ careerGroups.length }} EMPRESAS</span
+      >
+    </div>
+
+    <div class="career-layout">
+      <div class="career-timeline">
+        @for (group of careerGroups; track group.company; let firstGroup = $first) {
+          <section class="career-company-group" [attr.aria-label]="group.company">
+            @if (!firstGroup) {
+              <div class="career-stage-transition" aria-label="Nova empresa, nova fase">
+                <span class="career-stage-icon" aria-hidden="true">▶</span>
+                <span>STAGE CLEAR <b>/</b> NOVA EMPRESA, NOVA FASE</span>
+              </div>
+            }
+
+            <div
+              class="career-group-positions"
+              [class.career-group-positions--connected]="group.positions.length > 1"
+            >
+              @for (stage of group.positions; track stage.role + stage.period; let last = $last) {
+                <article
+                  class="career-card"
+                  [class.career-card--active]="
+                    stage.number === careerJourney[careerJourneyIndex]?.number
+                  "
+                  [id]="'career-stage-' + stage.number"
+                  tabindex="-1"
+                >
+                  <div class="career-marker" aria-hidden="true">
+                    <span>{{ stage.number }}</span>
+                  </div>
+                  <div class="career-content">
+                    <div class="career-heading">
+                      <div>
+                        <p class="career-company-name">{{ stage.company }}</p>
+                        <p class="career-sector">{{ stage.sector }}</p>
+                        <h4>{{ stage.role }}</h4>
+                        <p class="career-company">{{ stage.area }}</p>
+                      </div>
+                      <div class="career-heading-meta">
+                        @if (group.positions.length > 1) {
+                          <span class="career-progression"
+                            >PROGRESSÃO / {{ group.positions.length }} CARGOS</span
+                          >
+                        }
+                        <span class="career-period">{{ stage.period }}</span>
+                      </div>
+                    </div>
+
+                    @if (stage.client) {
+                      <p class="career-client">{{ stage.client }}</p>
+                    }
+
+                    <p class="career-summary">{{ stage.summary }}</p>
+
+                    <ul class="career-highlights">
+                      @for (highlight of stage.highlights; track highlight) {
+                        <li>{{ highlight }}</li>
+                      }
+                    </ul>
+
+                    <div class="career-stack" aria-label="Tecnologias e ferramentas">
+                      @for (technology of stage.stack; track technology) {
+                        <span>{{ technology }}</span>
+                      }
+                    </div>
+                  </div>
+                </article>
+
+                @if (group.positions.length > 1 && !last) {
+                  <div class="career-connection" aria-hidden="true">
+                    <span>ϟ</span>
+                  </div>
+                }
+              }
+            </div>
+          </section>
+        }
+      </div>
+
+      <aside class="career-side-quest" aria-labelledby="teaching-quest-title">
+        <p class="career-side-quest-label">SIDE QUEST / CONTRATO</p>
+        <h3 id="teaching-quest-title">{{ teachingSideQuest.company }}</h3>
+        <h4>{{ teachingSideQuest.role }}</h4>
+        <p class="career-side-quest-period">{{ teachingSideQuest.period }}</p>
+        <p class="career-side-quest-summary">{{ teachingSideQuest.summary }}</p>
+        <div class="career-side-quest-stack" aria-label="Áreas abordadas">
+          @for (technology of teachingSideQuest.stack; track technology) {
+            <span>{{ technology }}</span>
+          }
+        </div>
+      </aside>
+    </div>
+
+    @if (careerJourneyStarted) {
+      <aside
+        class="career-floating-control"
+        [class.career-floating-control--stowing]="careerControllerStowing"
+        aria-label="Controle da jornada profissional"
+      >
+        <svg
+          class="career-floating-cable"
+          viewBox="0 0 180 600"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            class="career-cable-shadow"
+            d="M 96 0 C 86 55 157 42 145 104 C 133 168 34 123 51 196 C 68 269 160 211 148 294 C 137 369 25 309 44 405 C 58 478 159 422 133 518 C 119 568 148 591 180 600"
+          />
+          <path
+            class="career-cable-wire"
+            d="M 96 0 C 86 55 157 42 145 104 C 133 168 34 123 51 196 C 68 269 160 211 148 294 C 137 369 25 309 44 405 C 58 478 159 422 133 518 C 119 568 148 591 180 600"
+          />
+          <circle class="career-cable-connector" cx="180" cy="600" r="7" />
+        </svg>
+        <div class="career-floating-controller">
+          <div class="career-dpad" role="group" aria-label="Navegação pelas experiências">
+            <button
+              class="career-dpad-up"
+              type="button"
+              aria-label="Avançar para uma experiência mais recente"
+              [disabled]="careerJourneyIndex === 0"
+              (click)="moveCareerJourney('up')"
+            >
+              ▲
+            </button>
+            <button
+              class="career-dpad-left"
+              type="button"
+              aria-label="Esquerda indisponível"
+              disabled
+            >
+              ◀
+            </button>
+            <span class="career-dpad-center"></span>
+            <button
+              class="career-dpad-right"
+              type="button"
+              aria-label="Direita indisponível"
+              disabled
+            >
+              ▶
+            </button>
+            <button
+              class="career-dpad-down"
+              type="button"
+              aria-label="Voltar para uma experiência anterior"
+              [disabled]="careerJourneyIndex === careerJourney.length - 1"
+              (click)="moveCareerJourney('down')"
+            >
+              ▼
+            </button>
+          </div>
+          <div class="career-floating-info">
+            <p class="career-floating-info-label">CAREER MODE / FASE ATUAL</p>
+            <span class="career-floating-status" aria-live="polite">{{ careerJourneyStatus }}</span>
+            <span class="career-floating-action-label">USE ↑ / ↓ PARA NAVEGAR</span>
+            @if (careerJourneyComplete) {
+              <button
+                class="career-store-controller"
+                type="button"
+                (click)="storeCareerController()"
+                aria-label="Guardar controle e encerrar a jornada"
+              >
+                <span aria-hidden="true">▣</span>
+                GUARDAR CONTROLE
+              </button>
+            }
+          </div>
+        </div>
+      </aside>
+    }
+  </section>
+
+  <section class="player-outro">
+    <p class="section-kicker">NEXT STAGE / EM CONSTRUÇÃO</p>
+    <h2>O jogo continua.</h2>
+    <p>
+      Sigo aprendendo, compartilhando experiências e explorando novas formas de elevar a qualidade
+      dos produtos e dos times.
+    </p>
+  </section>
+</div>

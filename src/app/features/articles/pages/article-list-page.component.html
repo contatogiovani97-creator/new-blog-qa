@@ -1,0 +1,17 @@
+<section aria-labelledby="articles-title">
+  <header class="page-intro">
+    <p class="section-kicker">SAVE POINT / ALL STORIES</p>
+    <h1 id="articles-title">Artigos para subir de nível.</h1>
+    <p>Guias, experiências e ideias sobre QA, testes e o universo da tecnologia.</p>
+  </header>
+
+  @if (articles.length) {
+    <div class="page-grid">
+      @for (article of articles; track article.slug) {
+        <app-article-card [article]="article" />
+      }
+    </div>
+  } @else {
+    <p class="empty-state">Nenhum artigo publicado ainda. Volte em breve.</p>
+  }
+</section>

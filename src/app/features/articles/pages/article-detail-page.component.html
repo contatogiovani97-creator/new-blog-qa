@@ -1,0 +1,27 @@
+@if (article(); as currentArticle) {
+  <article class="prose">
+    <a class="back-link" routerLink="/artigos">← Voltar aos artigos</a>
+    <p>
+      <a [routerLink]="['/categorias', currentArticle.categorySlug]">
+        {{ categoryName() }}
+      </a>
+      <span aria-hidden="true"> · </span>
+      <time [attr.datetime]="currentArticle.publishedAt">
+        {{ currentArticle.publishedAt | date: 'd MMMM y' : undefined : 'pt-BR' }}
+      </time>
+      <span aria-hidden="true"> · </span>
+      {{ currentArticle.readTimeMinutes }} min de leitura
+    </p>
+    <h1>{{ currentArticle.title }}</h1>
+    <p>{{ currentArticle.summary }}</p>
+    @for (paragraph of currentArticle.content; track $index) {
+      <p>{{ paragraph }}</p>
+    }
+  </article>
+} @else {
+  <section aria-labelledby="article-not-found-title">
+    <h1 id="article-not-found-title">Artigo não encontrado</h1>
+    <p>Este conteúdo não está disponível ou foi movido.</p>
+    <a routerLink="/artigos">Voltar à lista de artigos</a>
+  </section>
+}

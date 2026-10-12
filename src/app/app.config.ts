@@ -1,12 +1,16 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 import { provideClientHydration } from '@angular/platform-browser';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { routes } from './app.routes';
+
+registerLocaleData(localePt, 'pt-BR');
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes), provideClientHydration()
-  ]
+    provideRouter(routes, withComponentInputBinding()),
+    provideClientHydration(),
+  ],
 };

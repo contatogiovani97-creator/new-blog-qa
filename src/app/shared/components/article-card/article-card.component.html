@@ -1,0 +1,19 @@
+<article class="article-card">
+  <p class="article-meta">
+    <a class="article-category" [routerLink]="['/categorias', article().categorySlug]">{{
+      categoryName
+    }}</a>
+    <span aria-hidden="true">/</span>
+    <time [attr.datetime]="article().publishedAt">
+      {{ article().publishedAt | date: 'd MMM y' : undefined : 'pt-BR' }}
+    </time>
+  </p>
+  <h3>
+    <a [routerLink]="['/artigos', article().slug]">{{ article().title }}</a>
+  </h3>
+  <p>{{ article().summary }}</p>
+  <div class="article-card-footer">
+    <span>{{ article().readTimeMinutes }} MIN DE LEITURA</span>
+    <span aria-hidden="true">↗</span>
+  </div>
+</article>
