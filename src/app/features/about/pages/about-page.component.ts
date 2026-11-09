@@ -36,7 +36,7 @@ interface SideQuest {
 export class AboutPageComponent implements OnDestroy {
   readonly careerStages: CareerStage[] = [
     {
-      role: 'Analista de Testes/QA',
+      role: 'Engenheiro de Qualidade de Software',
       company: 'Spread Tecnologia',
       sector: 'Telecom',
       period: 'Março de 2026 — atual',
@@ -71,7 +71,7 @@ export class AboutPageComponent implements OnDestroy {
       ],
     },
     {
-      role: 'Analista de Testes/QA Sênior',
+      role: 'Engenheiro de Qualidade de Software',
       company: 'Itaú Unibanco',
       sector: 'Banco | Finanças',
       period: 'Maio de 2023 — Março de 2026',
@@ -144,7 +144,7 @@ export class AboutPageComponent implements OnDestroy {
       ],
     },
     {
-      role: 'Analista de Testes/QA Júnior',
+      role: 'Analista de QA Jr',
       company: 'Itaú Unibanco',
       sector: 'Banco | Finanças',
       period: 'Junho de 2021 — Outubro de 2022',
